@@ -1,34 +1,31 @@
 class Airplane
 
-  def initialize
-    @flying_status = true
+  attr_writer :flying
+  attr_accessor :location
+
+  def initialize(starting_airport)
+    @flying = false
+    @location = starting_airport
   end
 
   def flying?
-    @flying_status
-  end
-
-  def flying=(value)
-    @flying_status = value
+    @flying
   end
 
   def stop_flying
-    @flying_status = false
+    @flying = false
   end
 
   def land_at(airport)
-    airport.landing_plane(self)
+    airport.allow_landing(self)
     stop_flying
     @location = airport
   end
 
-  def location
-    @location
-  end
-
   def take_off
-    location.leaving_plane
+    location.allow_take_off(self)
     self.flying = true
+    location = nil
   end
 
 end
