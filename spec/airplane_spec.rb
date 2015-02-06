@@ -13,7 +13,7 @@ describe Airplane do
   end
 
   it "should be able to be 'not flying'" do
-    plane.stop_flying
+    plane.not_flying
     expect(plane).not_to be_flying
   end
 
@@ -21,8 +21,9 @@ describe Airplane do
     expect(plane).not_to be_flying
   end
 
-  it "should be created in an airport" do
+  it "should be in an airport's gate when created" do
     expect(plane.location).to eq(empty_airport)
+    expect(empty_airport.gates).to include(plane)
   end
 
   it "should be able to land in an airport" do

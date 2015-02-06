@@ -1,4 +1,8 @@
+require 'weather'
+
 class Airplane
+
+  include Weather
 
   attr_writer :flying
   attr_accessor :location
@@ -6,26 +10,27 @@ class Airplane
   def initialize(starting_airport)
     @flying = false
     @location = starting_airport
+    starting_airport.gates << self
   end
 
   def flying?
     @flying
   end
 
-  def stop_flying
+  def not_flying
     @flying = false
   end
 
   def land_at(airport)
     airport.allow_landing(self)
-    stop_flying
+    not_flying
     @location = airport
   end
 
   def take_off
     location.allow_take_off(self)
     self.flying = true
-    location = nil
+    @location = nil
   end
 
 end
