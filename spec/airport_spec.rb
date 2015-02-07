@@ -9,37 +9,46 @@ describe Airport do
   let(:plane) {double :plane}
   let(:airport) {Airport.new}
 
-  it "should be able to hold airplanes at gates" do
-    expect(airport.gates).to eq([])
+
+  context "Gates" do
+
+    it "should be able to hold airplanes at gates" do
+      expect(airport.gates).to eq([])
+    end
+
+    it "should know how many gates are in use" do
+      allow(airport).to receive(:there_is_a_storm?) {false}
+      airport.allow_landing(plane)
+      expect(airport.gates_in_use).to eq(1)
+    end
+
   end
 
-  it "should allow incoming planes to land" do
-    allow(airport).to receive(:there_is_a_storm?) {false}
-    airport.allow_landing(plane)
-    expect(airport.gates).to eq([plane])
+  context "Traffic Control" do
+
+    it "should allow incoming planes to land" do
+      allow(airport).to receive(:there_is_a_storm?) {false}
+      airport.allow_landing(plane)
+      expect(airport.gates).to eq([plane])
+    end
+
+    it "should allow planes to take off" do
+      allow(airport).to receive(:there_is_a_storm?) {false}
+      airport.allow_landing(plane)
+      expect(airport.gates).to eq([plane]) 
+      airport.allow_take_off(plane)
+      expect(airport.gates).to eq([])
+    end
+
+    it "should not allow planes to land when at max capacity" do
+      allow(airport).to receive(:there_is_a_storm?) {false}
+      expect{fill_all_gates}.to raise_error "The airport is full, you can't land yet"
+      expect(airport.gates.count).to eq(6)
+    end
+
   end
 
-  it "should allow planes to take off" do
-    allow(airport).to receive(:there_is_a_storm?) {false}
-    airport.allow_landing(plane)
-    expect(airport.gates).to eq([plane]) 
-    airport.allow_take_off(plane)
-    expect(airport.gates).to eq([])
-  end
-
-  it "should not allow planes to land when at max capacity" do
-    allow(airport).to receive(:there_is_a_storm?) {false}
-    expect{fill_all_gates}.to raise_error "The airport is full, you can't land yet"
-    expect(airport.gates.count).to eq(6)
-  end
-
-  it "should know how many gates are in use" do
-    allow(airport).to receive(:there_is_a_storm?) {false}
-    airport.allow_landing(plane)
-    expect(airport.gates_in_use).to eq(1)
-  end
-
-  context "Stormy weather" do
+  context "Stormy Weather" do
 
     it "should not allow planes to land when it's stormy" do
       allow(airport).to receive(:there_is_a_storm?) {true}
