@@ -19,15 +19,23 @@ class Plane
   end
 
   def land_at(airport)
-    airport.allow_landing(self) # is this too much of a dependency?
+    request_landing(airport)
     land
     @location = airport
   end
 
   def take_off
-    location.allow_take_off(self) # is this too much of a dependency?
+    request_take_off
     self.flying = true
     @location = nil
+  end
+
+  def request_landing(airport)
+    airport.allow_landing(self) # is this too much of a dependency?
+  end
+
+  def request_take_off
+    location.allow_take_off(self) # is this too much of a dependency?
   end
 
 end
