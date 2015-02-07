@@ -33,6 +33,7 @@ class Airport
     gates_in_use == capacity
   end
 
+
 # I've isolated this module method so that Airport has control over it
 # I think that's what it teaches in POODR
   def there_is_a_storm?

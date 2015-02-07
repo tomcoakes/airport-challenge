@@ -6,8 +6,8 @@ class Plane
   def initialize(starting_airport)
     @flying = false
     @location = starting_airport
-    raise "There's no room at this airport, please transport the plane somewhere else" if starting_airport.full?
-    starting_airport.gates << self
+    check_whether_airport_is_full(starting_airport)
+    put_new_plane_in_gate(starting_airport)
   end
 
   def flying?
@@ -30,12 +30,24 @@ class Plane
     @location = nil
   end
 
+
+# Are these final four methods still too dependent on Airport class?
+# I've tried to isolate them outside of the Plane's other methods
+
   def request_landing(airport)
-    airport.allow_landing(self) # is this too much of a dependency?
+    airport.allow_landing(self)
   end
 
   def request_take_off
-    location.allow_take_off(self) # is this too much of a dependency?
+    location.allow_take_off(self)
+  end
+
+  def check_whether_airport_is_full(airport)
+    raise "There's no room at this airport, so we've had to destroy the plane. Sorry about that." if airport.full?
+  end
+
+  def put_new_plane_in_gate(airport)
+    airport.gates << self
   end
 
 end
