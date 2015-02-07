@@ -1,4 +1,4 @@
-require 'airport.rb'
+require 'airport'
 
 def fill_all_gates
   21.times {airport.allow_landing(plane)}
@@ -41,8 +41,6 @@ describe Airport do
     end
 
     it "should not allow planes to take off when it's stormy" do
-       allow(airport).to receive(:there_is_a_storm?) {false}
-       airport.allow_landing(plane)
        allow(airport).to receive(:there_is_a_storm?) {true}
        expect{ airport.allow_take_off(plane)}.to raise_error "You can't take off right now, there's a storm"
     end
