@@ -33,6 +33,12 @@ describe Airport do
     expect(airport.gates.count).to eq(6)
   end
 
+  it "should know how many gates are in use" do
+    allow(airport).to receive(:there_is_a_storm?) {false}
+    airport.allow_landing(plane)
+    expect(airport.gates_in_use).to eq(1)
+  end
+
   context "Stormy weather" do
 
     it "should not allow planes to land when it's stormy" do
