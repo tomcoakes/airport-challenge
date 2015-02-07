@@ -12,7 +12,7 @@ describe Plane do
       expect(plane_in_the_air).to be_flying
     end
 
-    it "should be able to be 'not flying'" do
+    it "should stop flying when it lands" do
       allow(airport).to receive(:full?)
       plane.land
       expect(plane).not_to be_flying
