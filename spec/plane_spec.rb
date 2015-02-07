@@ -8,22 +8,22 @@ describe Plane do
 
   context "Flying status" do
 
-    it "should be able to fly" do
+    it "is able to fly" do
       expect(plane_in_the_air).to be_flying
     end
 
-    it "should stop flying when it lands" do
+    it "stops flying when it lands" do
       allow(airport).to receive(:full?)
       plane.land
       expect(plane).not_to be_flying
     end
 
-    it "should not be flying when created" do
+    it "isn't already flying when created" do
       allow(airport).to receive(:full?)
       expect(plane).not_to be_flying
     end
 
-    it "should be flying once it's taken off" do
+    it "begins flying when it takes off" do
       allow(airport).to receive(:full?)
       expect(airport).to receive(:allow_take_off).with(plane)
       plane.take_off
@@ -34,26 +34,26 @@ describe Plane do
 
   context "Dealing with airports" do
 
-    it "should be in an airport's gate when created" do
+    it "is assigned a starting airport when created" do
       allow(airport).to receive(:full?)
       expect(plane.location).to eq(airport)
       expect(airport.gates).to include(plane)
     end
 
-    it "should be able to land at an airport" do
+    it "is able to land at an airport" do
       allow(airport).to receive(:full?)
       expect(airport).to receive(:allow_landing).with(plane)
       plane.land_at(airport)
     end
 
-    it "should know what airport it is in" do
+    it "knows which airport it's currently at" do
       allow(airport).to receive(:full?)
       allow(airport).to receive(:allow_landing)
       plane.land_at(airport)
       expect(plane.location).to eq(airport)
     end
 
-    it "should be able to take off" do
+    it "is able to take off" do
       allow(airport).to receive(:full?)
       expect(airport).to receive(:allow_take_off)
       plane.take_off
