@@ -9,7 +9,7 @@ module Weather
   end
 
   def is_stormy?
-    rand(100) < 2 
+    rand(100) < 30 
   end
 
 end

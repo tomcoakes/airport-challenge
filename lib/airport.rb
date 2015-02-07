@@ -31,9 +31,3 @@ class Airport
   end
 
 end
-
-
-
-  # def weather
-  #   if rand(30) > 19 ? @weather = 'sunny' : @weather = 'stormy'
-  # end
