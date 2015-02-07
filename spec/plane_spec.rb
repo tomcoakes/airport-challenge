@@ -12,7 +12,7 @@ describe Plane do
   end
 
   it "should be able to be 'not flying'" do
-    plane.not_flying
+    plane.land
     expect(plane).not_to be_flying
   end
 

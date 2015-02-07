@@ -17,13 +17,13 @@ class Plane
     @flying
   end
 
-  def not_flying
+  def land
     @flying = false
   end
 
   def land_at(airport)
     airport.allow_landing(self) # is this too much of a dependency?
-    not_flying
+    land
     @location = airport
   end
 
