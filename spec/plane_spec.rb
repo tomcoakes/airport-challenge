@@ -1,8 +1,8 @@
-require 'airplane'
+require 'plane'
 
-describe Airplane do
+describe Plane do
  
-  let(:plane) {Airplane.new(empty_airport)}
+  let(:plane) {Plane.new(empty_airport)}
   let(:plane_in_the_air) {double :plane_in_the_air, flying?: true}
   let(:empty_airport) {double :empty_airport, gates: []}
   let(:airport_with_one_plane) {double :airport_with_one_plane, gates: [plane]}

@@ -1,6 +1,6 @@
-require 'weather'
+require_relative 'weather'
 
-class Airplane
+class Plane
 
   include Weather
 
@@ -22,13 +22,13 @@ class Airplane
   end
 
   def land_at(airport)
-    airport.allow_landing(self)
+    airport.allow_landing(self) # is this too much of a dependency?
     not_flying
     @location = airport
   end
 
   def take_off
-    location.allow_take_off(self)
+    location.allow_take_off(self) # is this too much of a dependency?
     self.flying = true
     @location = nil
   end

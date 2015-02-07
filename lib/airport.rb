@@ -1,4 +1,4 @@
-require 'weather'
+require_relative 'weather'
 
 class Airport
 
@@ -19,6 +19,7 @@ class Airport
   end
 
   def allow_take_off(plane)
+    raise "You can't take off right now, there's a storm" if there_is_a_storm?
     gates.delete(plane)
   end
 
