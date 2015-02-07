@@ -4,6 +4,8 @@ class Airport
 
   include Weather
 
+  attr_reader :capacity
+
   def initialize
     @capacity = 20
   end
@@ -14,7 +16,7 @@ class Airport
 
   def allow_landing(plane)
     raise "You can't land right now, there's a storm" if there_is_a_storm?
-    raise "The airport is full, you can't land yet" if gates_in_use == @capacity
+    raise "The airport is full, you can't land yet" if gates_in_use == capacity
     gates << plane
   end
 
