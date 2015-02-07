@@ -16,7 +16,7 @@ class Airport
 
   def allow_landing(plane)
     raise "You can't land right now, there's a storm" if there_is_a_storm?
-    raise "The airport is full, you can't land yet" if gates_in_use == capacity
+    raise "The airport is full, you can't land yet" if full?
     gates << plane
   end
 
@@ -29,8 +29,11 @@ class Airport
     gates.count
   end
 
+  def full?
+    gates_in_use == capacity
+  end
 
-# I've isolated this method so that Airport has control over it
+# I've isolated this module method so that Airport has control over it
 # I think that's what it teaches in POODR
   def there_is_a_storm?
     self.is_stormy?

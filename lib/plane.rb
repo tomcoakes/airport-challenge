@@ -10,6 +10,7 @@ class Plane
   def initialize(starting_airport)
     @flying = false
     @location = starting_airport
+    raise "There's no room at this airport, please transport the plane somewhere else" if starting_airport.full?
     starting_airport.gates << self
   end
 
