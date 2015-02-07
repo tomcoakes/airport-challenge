@@ -1,7 +1,7 @@
 require 'airport'
 
 def fill_all_gates
-  21.times {airport.allow_landing(plane)}
+  7.times {airport.allow_landing(plane)}
 end
 
 describe Airport do
@@ -30,7 +30,7 @@ describe Airport do
   it "should not allow planes to land when at max capacity" do
     allow(airport).to receive(:there_is_a_storm?) {false}
     expect{fill_all_gates}.to raise_error "The airport is full, you can't land yet"
-    expect(airport.gates.count).to eq(20)
+    expect(airport.gates.count).to eq(6)
   end
 
   context "Stormy weather" do

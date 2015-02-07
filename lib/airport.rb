@@ -7,7 +7,7 @@ class Airport
   attr_reader :capacity
 
   def initialize
-    @capacity = 20
+    @capacity = 6
   end
 
   def gates
