@@ -27,8 +27,6 @@ class Airport
     gates.delete(plane)
   end
 
-#private
-
   def gates_in_use
     gates.count
   end
