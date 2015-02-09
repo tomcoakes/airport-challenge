@@ -21,13 +21,13 @@ class Plane
   def land_at(airport)
     request_landing(airport)
     land
-    @location = airport
+    self.location = airport
   end
 
   def take_off
     request_take_off
     self.flying = true
-    @location = nil
+    self.location = nil
   end
 
 
