@@ -4,10 +4,12 @@ class Airport
 
   include Weather
 
+  DEFAULT_CAPACITY = 6
+
   attr_reader :capacity
 
   def initialize
-    @capacity = 6
+    @capacity = DEFAULT_CAPACITY
   end
 
   def gates
@@ -24,6 +26,8 @@ class Airport
     raise "You can't take off right now, there's a storm" if there_is_a_storm?
     gates.delete(plane)
   end
+
+#private
 
   def gates_in_use
     gates.count

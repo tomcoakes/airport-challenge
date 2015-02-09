@@ -1,7 +1,6 @@
 class Plane
 
-  attr_writer :flying
-  attr_accessor :location
+  attr_accessor :flying, :location
 
   def initialize(starting_airport)
     @flying = false
@@ -11,11 +10,11 @@ class Plane
   end
 
   def flying?
-    @flying
+    flying
   end
 
   def land
-    @flying = false
+    self.flying = false
   end
 
   def land_at(airport)

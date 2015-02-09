@@ -12,13 +12,7 @@ end
 describe "The grand finale (last spec)" do
   
   let(:airport) {Airport.new}
-  let(:plane1) {Plane.new(airport)}
-  let(:plane2) {Plane.new(airport)}
-  let(:plane3) {Plane.new(airport)}
-  let(:plane4) {Plane.new(airport)}
-  let(:plane5) {Plane.new(airport)}
-  let(:plane6) {Plane.new(airport)}
-  let(:all_planes) {[plane1, plane2, plane3, plane4, plane5, plane6]}
+  let(:all_planes) { Array.new(6) { Plane.new(airport) } }
 
   it "all planes can land and all planes can take off" do
     allow(airport).to receive(:there_is_a_storm?) {false}
